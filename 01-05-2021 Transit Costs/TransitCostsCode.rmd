@@ -1,0 +1,40 @@
+---
+title: "1-5-21_TransitCosts"
+author: "Amanda Hubbard"
+date: "4/7/2021"
+output: html_document
+---
+
+# TidyTuesday 1-5-2021
+
+### Transit Costs Project
+
+##### The data set contains records regarding public transit projects in more than 50 countries and that accounts for more than 11,000 km of urban rail built since the late 1990's.
+
+###### Library Statements and Loading Data
+
+```{r Library Statements, include=FALSE}
+library(tidytuesdayR)
+library(tidyverse)
+library(skimr)
+library(extrafont)
+library(cowplot)
+library(ggtext)
+library(tidytext)
+library(janitor)
+library(ggrepel)
+library(grid)
+library(png)
+library(scales)
+library(countrycode)
+
+## Get Data
+dat <- tidytuesdayR::tt_load("2021-01-05")
+transit1 <- dat$transit_cost
+```
+
+###### Initial Data Exploration
+
+```{r Initial Data Exploration}
+
+```
