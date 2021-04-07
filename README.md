@@ -1,2 +1,2 @@
 # TidyTuesday2021
-Data visualizations 
+Data visualizations developed in R using #TidyTuesday 2021 datasets. 
