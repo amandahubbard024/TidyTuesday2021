@@ -11,7 +11,7 @@ output: html_document
 
 ##### The data set contains records regarding public transit projects in more than 50 countries and that accounts for more than 11,000 km of urban rail built since the late 1990's.
 
-###### Library Statements and Loading Data
+### Library Statements and Loading Data
 
 ```{r Library Statements, include=FALSE}
 library(tidytuesdayR)
@@ -33,8 +33,40 @@ dat <- tidytuesdayR::tt_load("2021-01-05")
 transit1 <- dat$transit_cost
 ```
 
-###### Initial Data Exploration
+### Initial Data Exploration
 
 ```{r Initial Data Exploration}
+skimr::skim(transit1)
+```
 
+##### Initial observations
+
+-   544 records
+-   56 countries
+-   140 cities
+-   7 lines with general overall statistics that need to be removed
+
+```{r Data cleaning}
+transit2<- transit1[complete.cases(transit1[, 1:3]), ] ##removes the 7 unnecessary rows
+
+skimr::skim(transit2)
+```
+##### Summary observations
+
+-   Start/End years missing from 46 and 64 records, respectively
+-   Length of tunnel completed/percent of line length completed missing in 26 records
+-   Average cost/km in millions USD = 233 (SD = 258)
+-   Average proposed tunnel length = 21.5 km (SD = 22.6) and the total length of line completed is = 14.2 km (SD = 15.7)
+-   Average number of stations = 13.8 (SD = 13.7)
+```{r Getting information}
+# Number observations per country
+country.count<- transit2 %>% 
+  dplyr::count(country, sort = TRUE)
+# Number of observations by city
+city.count<- transit2 %>% 
+  dplyr::count(city, sort = TRUE)
+# Project durations
+transit2$start_year<- as.numeric(transit2$start_year)
+transit2$end_year<- as.numeric(transit2$end_year)
+transit2$duration <- transit2$end_year - transit2$start_year
 ```
