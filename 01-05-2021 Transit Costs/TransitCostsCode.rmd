@@ -70,3 +70,36 @@ transit2$start_year<- as.numeric(transit2$start_year)
 transit2$end_year<- as.numeric(transit2$end_year)
 transit2$duration <- transit2$end_year - transit2$start_year
 ```
+```{r Initial plots}
+country.plot <- country.count %>% 
+  ggplot(aes(x = fct_reorder(country, n), 
+             y = n,
+             label= n,
+             fill = NULL)) +
+  geom_col(color = "grey80",
+           size = 0.2, 
+           position = position_dodge(width = 0.9)) +
+  coord_flip()+
+  geom_text(hjust= -0.25, 
+            family = "Times", 
+            size = 2.5)+
+  theme_minimal()+
+  theme(
+        panel.grid = element_blank(), # remove gridlines
+        plot.subtitle = ggtext::element_markdown(),
+        axis.text.y = element_text(size = 8), 
+        axis.text.y.left = element_text(family = "Times",
+                                        face = "bold", 
+                                        size = 8), 
+        axis.text.x = element_text(family = "Times",
+                                        face = "bold", 
+                                        size = 8),
+        axis.title.y = element_text(family = "Times",
+                                        face = "bold", 
+                                        size = 10)) +
+  labs(y = "Number of Transit Projects per Country",
+       x = NULL)
+country.plot  
+  
+           
+```
